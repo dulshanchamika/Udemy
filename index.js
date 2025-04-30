@@ -13,7 +13,14 @@ const getUdemyCourses = async () => {
   const courses = [];
 
   try {
-    const { data } = await axios.get("https://www.coursejoiner.com/category/free-udemy/");
+    const { data } = await axios.get("https://www.coursejoiner.com/category/free-udemy/", {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9",
+      },
+    });
+    
     const $ = cheerio.load(data);
 
     $(".td-module-title a").each((i, el) => {
